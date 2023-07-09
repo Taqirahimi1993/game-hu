@@ -1,6 +1,16 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import { useRef, useEffect } from "react";
+import GameGrid from "./components/GameGrid";
 function App() {
+  const ref = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (ref.current) ref.current.focus();
+  });
+
+  useEffect(() => {
+    document.title = "My App";
+  });
   return (
     <Grid
       templateAreas={{
@@ -16,8 +26,8 @@ function App() {
           Aside
         </GridItem>
       </Show>
-      <GridItem area={"main"} bg={"dodgerblue"}>
-        Main
+      <GridItem area={"main"}>
+        <GameGrid />
       </GridItem>
     </Grid>
   );
